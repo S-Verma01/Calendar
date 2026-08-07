@@ -1,0 +1,106 @@
+/* Adjustment of calendarView colors to AtlantaFX (primer-dark) colors */
+
+/* Main surfaces */
+.calendar-view,
+.calendar-page,
+.day-view {
+    -fx-background-color: -color-bg-default !important;
+}
+
+/* All text and label elements */
+.calendar-view .label {
+    -fx-text-fill: -color-fg-default !important ;
+}
+
+/* Calendar week */
+.header .label {
+    -fx-background-color: -transparent !important;
+}
+
+/* Selected day in MonthView */
+.day:selected {
+    -fx-background-color: #58a6ff60 !important;
+}
+
+.month-view > .container > .weekend-day:selected {
+    -fx-background-color: #58a6ff60 !important;
+}
+
+/* Current time line in DayView */
+.day-view > .current-time-line {
+    -fx-stroke: #58a6ff60 !important;
+}
+
+.day-view > .current-time-circle {
+    -fx-stroke: #58a6ff60 !important;
+    -fx-fill: #58a6ff60 !important;
+}
+
+/* Current day in WeekView */
+.all-day-view > .container > .today {
+    -fx-border-color: transparent transparent #58a6ff60 transparent !important;
+    -fx-background-color: #58a6ff60 !important;
+}
+
+/* Current week in MonthView */
+.month-view > .container > .current-week {
+    -fx-border-color: -color-accent-fg !important;
+}
+
+/* Current day in MonthView */
+.month-view > .container > .today {
+    -fx-border-color: -color-accent-emphasis transparent transparent transparent !important;
+}
+
+/* Weekend days */
+.month-view > .container > .weekend-day,
+.all-day-view > .container > .weekend {
+    -fx-background-color: -color-bg-subtle !important;
+}
+
+/* Current day in MonthView and YearView */
+.month-view > .container > .today,
+.year-month-view > .container > .today {
+    -fx-background-color: -color-accent-subtle !important;
+}
+
+/* Separator lines (for hours and half hours) */
+.day-view > .full-hour-line,
+.day-view > .half-hour-line {
+    -fx-stroke: -color-border-muted !important;
+    -fx-background-color: -color-border-muted !important;
+}
+
+/* YearMonthView background */
+.year-month-view > .container {
+    -fx-background-color: -color-bg-subtle !important;
+}
+
+/* Lines beneath weekday-names in YearView */
+.year-month-view > .container > .day-of-week-label {
+    -fx-border-color: transparent transparent -color-border-muted transparent !important;
+}
+/* Lines beneath weekday-names of current Month in YearView */
+.year-month-view > .container > .current-date-border {
+    -fx-border-color: transparent transparent #58a6ff60 transparent !important;
+    -fx-border-width: 2.0;
+}
+
+/* Ways not belonging to month in YearView */
+.year-month-view > .container > .day-not-of-month-label {
+    -fx-text-fill: -color-fg-muted !important;
+    -fx-opacity: 0.4 !important;
+}
+
+/* Weekend-day in YearView */
+.year-month-view > .container > .weekend-day {
+    -fx-background-color: #8b949e33 !important;
+}
+
+/* Scaling and bolding all labels and texts */
+.calendar-view .label,
+.calendar-view .text {
+    -fx-font-size: 1.35em !important;
+    -fx-font-weight: bold !important;
+}
+
