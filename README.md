@@ -1,14 +1,16 @@
 # Calendar Application
-  desktop calendar application with multiple features planned.
+  Desktop calendar application with multiple features planned.
 
 ## Current Features
-- Create calendar entries (work in progress)
+- Create calendar entries
+- Delete calendar entries
+- Mini calendar for date selection
 
 ## Technologies Used
 - Java 21
 - JavaFX
 - JavaFX CSS
+- JDBC SQLite
 - Maven
-- Libraries: 
-  - CalendarFX
-  - AtlantaFX
+- CalendarFX
+- AtlantaFX
