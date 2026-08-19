@@ -4,6 +4,7 @@
 ## Current Features
 - Create calendar entries
 - Delete calendar entries
+- Edit calendar entries
 - Mini calendar for date selection
 
 ## Technologies Used

@@ -70,7 +70,6 @@ public class LocalDatabase {
             closeConnection();
         }
 
-
         buildConnection();
         String sql2 = "SELECT MAX(id) AS latest_entry FROM appointments";
         int id = 0;
@@ -139,7 +138,6 @@ public class LocalDatabase {
 
         String sql = "UPDATE appointments SET title = ?, timeStart = ?, timeEnd = ?, description = ? WHERE id = ?";
 
-
         try(PreparedStatement pst = connection.prepareStatement(sql)) {
             pst.setString(1, a.getTitle());
             pst.setString(2, a.getTimeStart().toString());
@@ -153,7 +151,6 @@ public class LocalDatabase {
         } finally {
             closeConnection();
         }
-
     }
 
     public static void main(String[] args) {
