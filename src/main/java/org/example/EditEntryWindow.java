@@ -53,19 +53,6 @@ public class EditEntryWindow extends EntryWindowBase {
         confirmPane.setAlignment(Pos.TOP_RIGHT);
     }
 
-    //Getter & setter methods
-    public Button getCloseButton() {
-        return closeButton;
-    }
-    public Button getConfirmButton() {
-        return confirmButton;
-    }
-    public boolean getIsOpen() {
-        return isOpen;
-    }
-    public void setIsOpen(boolean value) {
-        isOpen = value;
-    }
     public void displayEntry(Appointment appointment, Entry<?> entry) {
 
         currentEntry = entry;
@@ -153,4 +140,19 @@ public class EditEntryWindow extends EntryWindowBase {
         appointment.update();
 
     }
+
+    //Getter & setter methods
+    public Button getCloseButton() {
+        return closeButton;
+    }
+    public Button getConfirmButton() {
+        return confirmButton;
+    }
+    public boolean getIsOpen() {
+        return isOpen;
+    }
+    public void setIsOpen(boolean value) {
+        isOpen = value;
+    }
+
 }

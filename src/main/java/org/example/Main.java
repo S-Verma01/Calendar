@@ -21,6 +21,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
+import static java.lang.Thread.sleep;
+
 public class Main extends Application {
 
     //Static variables
@@ -60,6 +62,9 @@ public class Main extends Application {
     private CreateEntryWindow createEntryWindow;
     private EditEntryWindow editEntryWindow;
 
+    //CountdownWindow
+    private CountdownWindow countdownWindow;
+
     //Methods
     public void updateTodayTimeLabels() {
         LocalDate today = LocalDate.now();
@@ -84,6 +89,7 @@ public class Main extends Application {
         editEntryWindow = new EditEntryWindow();
         createEntryWindow.setIsOpen(false);
         sidebarIsOpen = false;
+        countdownWindow = new CountdownWindow();
     }
     public void createPanes() {
         //Panes
@@ -150,7 +156,7 @@ public class Main extends Application {
         home.getChildren().addAll(top, center);
         top.getChildren().addAll(sidebarIcon, create);
         center.getChildren().addAll(calendarGroup, dashboard);
-        dashboard.getChildren().addAll(currentDate, space, promptBar);
+        dashboard.getChildren().addAll(currentDate, space, countdownWindow);
     }
     public void setCalendarView() {
         //Setting up calendarView
@@ -190,6 +196,11 @@ public class Main extends Application {
                 Appointment appointment = entryToAppointment.get(selectedEntry.getId());
                 appointment.deleteFromLocalDatabase();
                 selectedEntry.removeFromCalendar();
+                if(editEntryWindow.getIsOpen()) {
+                    dashboard.getChildren().remove(editEntryWindow);
+                    editEntryWindow.setIsOpen(false);
+                }
+                countdownWindow.refresh();
             });
 
             edit.setOnAction(e -> {
@@ -260,6 +271,7 @@ public class Main extends Application {
             appointment.setCalendarId(entry.getId());
             entryToAppointment.put(entry.getId(), appointment);
             appointment.addToLocalDatabase();
+            countdownWindow.refresh();
 
             //Show editEntryWindow
             if(!editEntryWindow.getIsOpen()) {
@@ -278,6 +290,7 @@ public class Main extends Application {
                 appointment.update();
                 editEntryWindow.displayEntry(appointment, entry);
 
+                countdownWindow.refresh();
             });
             //Refresh editEntryWindow
             editEntryWindow.displayEntry(appointment, entry);
@@ -362,6 +375,7 @@ public class Main extends Application {
                         calendar.setToday(LocalDate.now());
                         calendar.setTime(LocalTime.now());
                         updateTodayTimeLabels();
+                        countdownWindow.refreshCountdown();
                     });
 
                     try {
@@ -376,6 +390,16 @@ public class Main extends Application {
         };
         updateTimeThread.setPriority(Thread.MIN_PRIORITY);
         updateTimeThread.setDaemon(true);
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        int seconds = currentDateTime.getSecond();
+        long nanoSeconds = currentDateTime.getNano();
+        int remainingSeconds = 10 - (seconds % 10);
+        long remainingMilliSeconds = (remainingSeconds * 1000) - (nanoSeconds /1000000);
+        try {
+            sleep(remainingMilliSeconds);
+        } catch(InterruptedException i) {
+            i.printStackTrace();
+        }
         updateTimeThread.start();
     }
     public void loadAllAppointments() {
@@ -392,6 +416,7 @@ public class Main extends Application {
                    appointment.setTimeStart(newInterval.getStartDateTime());
                    appointment.setTimeEnd(newInterval.getEndDateTime());
                    appointment.update();
+                   countdownWindow.refresh();
                    editEntryWindow.displayEntry(appointment, entry);
                });
            }

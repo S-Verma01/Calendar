@@ -335,7 +335,7 @@ public class EntryWindowBase extends VBox {
                 }
             }
         }
-        //Note regarding invalid day input: A DateTimeParseException does not occur when the day exceeds the number
+        // Note regarding invalid day input: A DateTimeParseException does not occur when the day exceeds the number
         // of days in the selected month. Instead, the highest valid day of that month is selected.
         // A DateTimeParseException only occurs when the day is set to 32 or higher.
     }
